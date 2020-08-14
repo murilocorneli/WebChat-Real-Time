@@ -31,6 +31,7 @@ const Chat =()=>{
 
         if(message.trim()){
             socket.emit('chat.message', {
+                name: localStorage.getItem('UserName'),
                 id: myId,
                 message
             })
@@ -46,14 +47,14 @@ const Chat =()=>{
                     return(
                         <li key={index} className={`list__item list__item--${m.id===myId?'mine': 'other'}`}>
                         <span id="teste" className={`message message--${m.id===myId? 'mine': 'other'}` }>
-                            {m.message}
+                      <h5>{m.name}</h5>{m.message}
                         </span>
                     </li>
                     )
                 })}
             </ul>
             <form onSubmit={HandleFormSubmit}  className="form">
-                <input value={message} type="text" onChange={HandleMessage}  placeholder="Type a new message here" className="form__field"/>
+                <input value={message} type="text" onChange={HandleMessage}  placeholder="Escreva uma mensagem aqui" className="form__field"/>
             </form>
         </main>
     )
